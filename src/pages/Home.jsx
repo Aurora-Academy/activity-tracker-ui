@@ -1,5 +1,7 @@
-import { Card } from "react-bootstrap";
+import { Accordion, Card, Form } from "react-bootstrap";
 import Input from "../components/Input";
+import SubActivity from "../components/SubActivity";
+import Notify from "../components/Notify";
 
 const Home = () => {
   return (
@@ -10,7 +12,25 @@ const Home = () => {
       <div className="row">
         <Card className="shadow p-3 mb-5 bg-white rounded">
           <Card.Body>
-            <Input />
+            <Input placeholder="Add new Activity" />
+            <div className="m-3">
+              <Notify msg="No Activities Found" />
+              <Accordion defaultActiveKey="0">
+                <Accordion.Item eventKey="0">
+                  <Accordion.Header>
+                    <Form.Check type="checkbox" />
+                    <div className="mt-1 px-2">Activity Number 1</div>
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    <SubActivity />
+                    <SubActivity />
+                    <SubActivity />
+                    <SubActivity />
+                    <Input placeholder="Add new SubActivity" />
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
+            </div>
           </Card.Body>
         </Card>
       </div>

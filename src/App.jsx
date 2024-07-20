@@ -6,8 +6,8 @@ function App() {
     <>
       <div className="container vh-90">
         <div
-          className="d-flex justify-content-center"
-          style={{ minHeight: "400px" }}
+          className="d-flex justify-content-center overflow-auto"
+          style={{ maxHeight: "500px" }}
         >
           <Home />
         </div>
