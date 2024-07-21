@@ -22,7 +22,6 @@ const SubActivity = ({ data, setData }) => {
     }
   };
 
-  console.log({ data });
   return (
     <div className="row mb-2">
       <div className="d-flex justify-content-between">
