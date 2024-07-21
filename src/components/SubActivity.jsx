@@ -9,15 +9,12 @@ const SubActivity = ({ data, setData }) => {
   };
 
   const handleUpdate = async (e, data) => {
-    console.log("tigge");
     e.preventDefault();
     const { _id } = data;
     const { data: oneData } = await getOne(_id);
-    console.log({ oneData });
     const payload = {
       isCompleted: !oneData?.data?.isCompleted,
     };
-    console.log({ payload });
     const { data: newData } = await update(_id, payload);
     if (newData?.data?.isCompleted !== undefined) {
       const refetch = await getAll();
