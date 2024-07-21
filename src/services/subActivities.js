@@ -5,6 +5,10 @@ export const create = (payload) => {
   return instance.post(APIs.SUBACTIVITIES, payload);
 };
 
+export const getOne = (id) => {
+  return instance.patch(APIs.SUBACTIVITIES + `/${id}`);
+};
+
 export const update = (id, payload) => {
   return instance.patch(APIs.SUBACTIVITIES + `/${id}`, payload);
 };

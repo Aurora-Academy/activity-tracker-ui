@@ -58,7 +58,7 @@ const Home = () => {
               onSubmit={addNewActivity}
             />
             <div className="m-3">
-              {data.length > 0 ? (
+              {data && data.length > 0 ? (
                 data?.map((activity, index) => {
                   return (
                     <Accordion key={index} defaultActiveKey={index}>
@@ -72,9 +72,13 @@ const Home = () => {
                           <div className="mt-1 px-2">{activity?.name}</div>
                         </Accordion.Header>
                         <Accordion.Body>
-                          {activity?.subactivities?.length > 0 ? (
+                          {data && activity?.subactivities?.length > 0 ? (
                             activity?.subactivities.map((sa, index) => (
-                              <SubActivity key={index} data={sa} />
+                              <SubActivity
+                                key={index}
+                                data={sa}
+                                setData={setData}
+                              />
                             ))
                           ) : (
                             <Notify msg="No Sub Activities Found" />

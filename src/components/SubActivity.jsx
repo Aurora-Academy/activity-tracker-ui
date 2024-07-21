@@ -1,31 +1,39 @@
-import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { FaTrashAlt } from "react-icons/fa";
-import { update } from "../services/subActivities";
+import { getOne, update } from "../services/subActivities";
+import { getAll } from "../services/activities";
 
-const SubActivity = ({ data }) => {
-  const [isCheck, setIsChecked] = useState(null);
+const SubActivity = ({ data, setData }) => {
   const handleDelete = (id) => {
     // Call the subactivity delete API call using id
   };
 
-  const handleUpdate = async (data) => {
-    const { _id, isCompleted } = data;
+  const handleUpdate = async (e, data) => {
+    console.log("tigge");
+    e.preventDefault();
+    const { _id } = data;
+    const { data: oneData } = await getOne(_id);
+    console.log({ oneData });
     const payload = {
-      isCompleted: !isCompleted,
+      isCompleted: !oneData?.data?.isCompleted,
     };
+    console.log({ payload });
     const { data: newData } = await update(_id, payload);
-    setIsChecked(newData?.data?.isCompleted);
+    if (newData?.data?.isCompleted !== undefined) {
+      const refetch = await getAll();
+      setData(refetch?.data?.data);
+    }
   };
 
+  console.log({ data });
   return (
     <div className="row mb-2">
       <div className="d-flex justify-content-between">
         <div className="d-flex">
           <Form.Check
             type="checkbox"
-            checked={isCheck || data?.isCompleted}
-            onChange={() => handleUpdate(data)}
+            checked={data?.isCompleted}
+            onChange={(e) => handleUpdate(e, data)}
           />
           <div className="px-2">{data?.name}</div>
         </div>
