@@ -4,11 +4,8 @@ import Home from "./pages/Home";
 function App() {
   return (
     <>
-      <div className="container vh-90">
-        <div
-          className="d-flex justify-content-center overflow-auto"
-          style={{ maxHeight: "500px" }}
-        >
+      <div className="container">
+        <div className="d-flex justify-content-center">
           <Home />
         </div>
         <Footer />
